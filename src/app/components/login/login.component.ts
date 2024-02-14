@@ -2,6 +2,7 @@ import {Component, signal} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -15,23 +16,32 @@ export class LoginComponent {
     "password": ""
   }
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
 
   onLogin(){
-    this.http.post('http://localhost:8081/api/v1/auth/login', this.loginObj).subscribe((res: any) => {
+    // validate the username and password
+    if (!this.loginObj.username) {
+      this.toastr.warning('Username is required');
+      return;
+    }
+    if (!this.loginObj.password) {
+      this.toastr.warning('Password is required');
+      return;
+    }
+
+    // call the login service
+    this.authService.Login(this.loginObj).subscribe((res: any) => {
       console.log("res : "+res);
       if (res.token) {
-        alert('Login Success');
         this.toastr.success('Login Success');
         localStorage.setItem('accessToken', res.token);
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']);
       } else {
-        alert('Login Failed');
+        this.toastr.error('Login Failed');
       }
     }, error => {
-      console.error(error);
-      alert('Login Failed: ' + error.message);
+      this.toastr.error('Error while login');
     });
   }
 }
