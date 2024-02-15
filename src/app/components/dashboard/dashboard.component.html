@@ -35,6 +35,13 @@
 
     <!-- Right elements -->
     <div class="d-flex align-items-center">
+      <!-- deconnecter -->
+      <a class="link-secondary me-3" (click)="logout()">
+        Logout<i class="fas fa-sign-out-alt"></i>
+      </a>
+      <div *ngIf="isAdminUser">
+        Hi Admin
+      </div>
       <!-- Icon -->
       <a class="link-secondary me-3" href="#">
         <i class="fas fa-shopping-cart"></i>

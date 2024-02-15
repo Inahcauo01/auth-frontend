@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path : 'dashboard', component: DashboardComponent },
-  { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin', component: AdminPageComponent
+    , canActivate: [AdminGuard]
+  },
   { path: 'user', component: UserPageComponent },
 
   { path: '**', component: Page404Component }

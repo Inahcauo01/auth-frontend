@@ -1,1 +1,31 @@
 <p>admin-page works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table border-info">
+        <thead class="text-white">
+        <tr>
+          <th class="text-dark fw-medium">Num</th>
+          <th class="text-dark fw-medium">FirstName</th>
+          <th class="text-dark fw-medium">LastName</th>
+          <th class="text-dark fw-medium">AccessionDate</th>
+          <th class="text-dark fw-medium">Nationality</th>
+          <th class="text-dark fw-medium">IdentityDocument</th>
+          <th class="text-dark fw-medium">IdentityNumber</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let member of allMembers">
+          <td>{{ member.num }}</td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.familyName }}</td>
+          <td>{{ member.accessionDate }}</td>
+          <td>{{ member.nationality }}</td>
+          <td>{{ member.identityDocument }}</td>
+          <td>{{ member.identityNumber }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

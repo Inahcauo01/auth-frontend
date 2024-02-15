@@ -44,4 +44,5 @@ export class LoginComponent {
       this.toastr.error('Error while login');
     });
   }
+
 }

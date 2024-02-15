@@ -9,10 +9,10 @@ import { Page404Component } from './components/page404/page404.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-// import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import {ToastNoAnimationModule, ToastrModule} from "ngx-toastr";
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { UserPageComponent } from './components/user-page/user-page.component';
         ToastNoAnimationModule.forRoot(),
     ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
